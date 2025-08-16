@@ -42,48 +42,82 @@ Modern B2B eCommerce platform built with Next.js, Prisma, and Supabase, adapted 
 
 ### Installation
 
+#### Option 1: Quick Setup (Recommended)
+
 1. **Clone the repository**
 ```bash
 git clone https://github.com/nycolasmancini/pmcell-b2b-ecommerce.git
 cd pmcell-b2b-ecommerce
 ```
 
-2. **Install dependencies**
+2. **Automated setup**
 ```bash
+npm run setup
+```
+
+3. **Create Supabase project**
+   - Go to [supabase.com](https://supabase.com) and create a new project
+   - Name: `pmcell-b2b-ecommerce`
+   - Choose a strong database password
+   - Select region: Brazil South (for better performance)
+
+4. **Get Supabase credentials**
+   - **Database URL**: Settings > Database > Connection string > URI
+   - **Project URL**: Settings > API > Project URL
+   - **API Key**: Settings > API > Project API keys > anon/public
+
+5. **Update .env file**
+   Update the generated `.env` file with your Supabase credentials:
+   ```env
+   DATABASE_URL="postgresql://postgres:your-password@db.your-project-ref.supabase.co:5432/postgres"
+   NEXT_PUBLIC_SUPABASE_URL="https://your-project-ref.supabase.co"
+   NEXT_PUBLIC_SUPABASE_ANON_KEY="your-supabase-anon-key"
+   ```
+
+6. **Complete setup**
+```bash
+npm install
+npm run db:push
+npm run db:seed
+npm run dev
+```
+
+#### Option 2: Manual Setup
+
+1. **Clone and install**
+```bash
+git clone https://github.com/nycolasmancini/pmcell-b2b-ecommerce.git
+cd pmcell-b2b-ecommerce
 npm install
 ```
 
-3. **Set up Supabase**
-   - Create a new project at [supabase.com](https://supabase.com)
-   - Copy the database URL and API keys
-
-4. **Configure environment variables**
+2. **Configure environment**
 ```bash
 cp .env.example .env
-```
-Edit `.env` with your Supabase credentials:
-```env
-DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres"
-NEXTAUTH_SECRET=your_nextauth_secret_here
-NEXTAUTH_URL=http://localhost:3000
-NEXT_PUBLIC_SUPABASE_URL=https://[YOUR-PROJECT-REF].supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+# Edit .env with your Supabase credentials
 ```
 
-5. **Set up the database**
+3. **Set up database**
 ```bash
-npx prisma db push
-npx prisma db seed  # Optional: seed with demo data
+npm run db:push
+npm run db:seed
 ```
 
-6. **Start the development server**
+4. **Start development**
 ```bash
 npm run dev
 ```
 
-7. **Open the application**
-   - Visit [http://localhost:3000](http://localhost:3000)
-   - Admin dashboard: [http://localhost:3000/admin](http://localhost:3000/admin)
+### Access the Application
+
+- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Admin Dashboard**: [http://localhost:3000/admin](http://localhost:3000/admin)
+- **Database Studio**: `npm run db:studio`
+
+### Default Admin Credentials
+
+- **Email**: admin@pmcell.com
+- **Password**: password
 
 ## Database Schema
 
